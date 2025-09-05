@@ -37,3 +37,5 @@ You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
 # Desafios-Nebula-Solutions
+
+https://www.notion.so/recursosdev/Svelte-265209e88ae280e79463ce301afd053d?source=copy_link
