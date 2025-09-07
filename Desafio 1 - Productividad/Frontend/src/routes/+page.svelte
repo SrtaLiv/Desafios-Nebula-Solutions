@@ -3,6 +3,7 @@
 </script>
 
 <main class="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
+	
 	<div class="container mx-auto px-4 py-8">
 		<header class="mb-12 text-center">
 			<h1 class="mb-4 text-4xl font-bold text-gray-800">🚀 Banco de Ideas Inteligente</h1>
