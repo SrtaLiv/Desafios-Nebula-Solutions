@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 const { OpenAI } = require("openai");
 const { getValkeyClient } = require("../utils/valkey");
+const { tweet } = require('../utils/twitter');
+
 
 // --------------------- Inicialización de OpenAI ---------------------
 const openai = new OpenAI({
@@ -222,6 +224,18 @@ router.delete("/ideas/:key", async (req, res) => {
     const deleted = await client.del(key);
     if (!deleted) return res.status(404).json({ error: "Idea no encontrada" });
     res.json({ message: "Idea eliminada", key });
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// --------------------- PRUEBAS DE X ---------------------
+
+router.post('/twitter/test', async (req, res) => {
+  try {
+    const { text } = req.body;
+    const result = await tweet(text || 'Hello, this is a test.');
+    res.json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -99,56 +99,58 @@ async function addFormat() {
 	}
 </script>
 
-<main class="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50">
-	<div class="container mx-auto px-4 py-8">
-		<h1 class="text-3xl font-bold mb-8 text-gray-800">🎨 Administrar formatos</h1>
+<main class="min-h-screen bg-gradient-to-br from-pink-100 via-purple-100 to-blue-100">
+	<div class="max-w-3xl mx-auto px-4 py-10">
+		<h1 class="text-4xl font-extrabold mb-10 text-gray-800 flex items-center gap-2">
+			<span class="inline-block text-pink-400 animate-pulse">🎨</span> Administrar formatos
+		</h1>
 
 		<!-- Formulario para agregar formato -->
-		<div class="bg-white rounded-xl shadow p-6 mb-8">
-			<h2 class="text-lg font-semibold mb-4">Agregar nuevo formato</h2>
+		<div class="bg-white/90 rounded-2xl shadow-lg p-8 mb-10 border border-pink-100">
+			<h2 class="text-xl font-bold mb-6 text-pink-600">Agregar nuevo formato</h2>
 			<div class="grid md:grid-cols-4 gap-4 mb-4">
-				<input class="border rounded px-3 py-2" bind:value={newId} placeholder="ID único (ej: carousel)" />
-				<input class="border rounded px-3 py-2" bind:value={newName} placeholder="Nombre" />
-				<input class="border rounded px-3 py-2 md:col-span-2" bind:value={newPrompt} placeholder="Prompt" />
-				<input class="border rounded px-3 py-2 md:col-span-2" bind:value={newTips} placeholder="Tips" />
+				<input class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 outline-none transition-all" bind:value={newId} placeholder="ID único (ej: carousel)" />
+				<input class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 outline-none transition-all" bind:value={newName} placeholder="Nombre" />
+				<input class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 md:col-span-2 outline-none transition-all" bind:value={newPrompt} placeholder="Prompt" />
+				<input class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 md:col-span-2 outline-none transition-all" bind:value={newTips} placeholder="Tips" />
 			</div>
-			<div class="flex gap-4 items-center">
-				<button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700" on:click={addFormat} disabled={creating}>Agregar</button>
+			<div class="flex gap-4 items-center mt-2">
+				<button class="bg-pink-500 text-white px-6 py-2 rounded-lg font-bold shadow hover:bg-pink-600 transition-all disabled:opacity-60" on:click={addFormat} disabled={creating}>Agregar</button>
 				{#if createError}
-					<span class="text-red-500">{createError}</span>
+					<span class="text-red-500 font-semibold">{createError}</span>
 				{/if}
 			</div>
 		</div>
 
 		{#if loading}
-			<div class="text-gray-500">Cargando formatos...</div>
+			<div class="text-gray-500 text-center py-10">Cargando formatos...</div>
 		{:else if error}
-			<div class="text-red-500">{error}</div>
+			<div class="text-red-500 text-center py-10">{error}</div>
 		{:else if formats.length === 0}
-			<div class="text-gray-500">No hay formatos cargados.</div>
+			<div class="text-gray-500 text-center py-10">No hay formatos cargados.</div>
 		{:else}
-			<div class="grid gap-6">
+			<div class="grid gap-8">
 				{#each formats as format}
-					<div class="bg-white rounded-xl shadow p-6 flex flex-col md:flex-row md:items-center gap-4">
+					<div class="bg-white/90 rounded-2xl shadow-md p-6 flex flex-col md:flex-row md:items-center gap-6 border border-gray-100 hover:shadow-xl transition-all">
 						{#if editingId === format.id}
-							<div class="flex-1 grid gap-2">
-								<input class="border rounded px-3 py-2" bind:value={editName} placeholder="Nombre" />
-								<textarea class="border rounded px-3 py-2" bind:value={editPrompt} placeholder="Prompt" rows="2"></textarea>
-								<textarea class="border rounded px-3 py-2" bind:value={editTips} placeholder="Tips" rows="2"></textarea>
+							<div class="flex-1 grid gap-3">
+								<input class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 outline-none transition-all" bind:value={editName} placeholder="Nombre" />
+								<textarea class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 outline-none transition-all" bind:value={editPrompt} placeholder="Prompt" rows="2"></textarea>
+								<textarea class="border-2 border-pink-200 focus:border-pink-400 rounded-lg px-3 py-2 outline-none transition-all" bind:value={editTips} placeholder="Tips" rows="2"></textarea>
 							</div>
-							<div class="flex flex-col gap-2">
-								<button class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600" on:click={saveEdit}>Guardar</button>
-								<button class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400" on:click={cancelEdit}>Cancelar</button>
+							<div class="flex flex-col gap-2 min-w-[120px]">
+								<button class="bg-green-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-green-600 transition-all" on:click={saveEdit}>Guardar</button>
+								<button class="bg-gray-200 text-gray-700 px-4 py-2 rounded-lg font-bold hover:bg-gray-300 transition-all" on:click={cancelEdit}>Cancelar</button>
 							</div>
 						{:else}
 							<div class="flex-1">
-								<div class="font-bold text-lg mb-1">{format.name}</div>
-								<div class="text-gray-600 mb-1"><span class="font-semibold">Prompt:</span> {format.prompt}</div>
-								<div class="text-blue-700 text-sm"><span class="font-semibold">Tips:</span> {format.tips}</div>
+								<div class="font-bold text-xl mb-1 text-pink-600">{format.name}</div>
+								<div class="text-gray-700 mb-1"><span class="font-semibold text-gray-500">Prompt:</span> {format.prompt}</div>
+								<div class="text-pink-700 text-sm"><span class="font-semibold">Tips:</span> {format.tips}</div>
 							</div>
-							<div class="flex flex-col gap-2">
-								<button class="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500" on:click={() => startEdit(format)}>Editar</button>
-								<button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" on:click={() => deleteFormat(format.id)}>Eliminar</button>
+							<div class="flex flex-col gap-2 min-w-[120px]">
+								<button class="bg-yellow-400 text-white px-4 py-2 rounded-lg font-bold hover:bg-yellow-500 transition-all" on:click={() => startEdit(format)}>Editar</button>
+								<button class="bg-red-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-600 transition-all" on:click={() => deleteFormat(format.id)}>Eliminar</button>
 							</div>
 						{/if}
 					</div>

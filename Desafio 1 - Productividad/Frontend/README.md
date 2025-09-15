@@ -39,3 +39,13 @@ You can preview the production build with `npm run preview`.
 # Desafios-Nebula-Solutions
 
 https://www.notion.so/recursosdev/Svelte-265209e88ae280e79463ce301afd053d?source=copy_link
+
+
+cosas a agregar
+Que cada idea tenga un boton de "regenerar"
+quitar los asteriscos molestos del prompts, son: ** y ---e
+poner el cursor pointer
+hacer mas lindo el navbar
+
+Consume twitter la aplicacion, puedes obtener las keys mediante
+https://developer.x.com/
