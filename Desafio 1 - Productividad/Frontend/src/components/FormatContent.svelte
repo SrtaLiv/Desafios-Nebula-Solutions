@@ -149,8 +149,8 @@ async function addFormat() {
 								<div class="text-pink-700 text-sm"><span class="font-semibold">Tips:</span> {format.tips}</div>
 							</div>
 							<div class="flex flex-col gap-2 min-w-[120px]">
-								<button class="bg-yellow-400 text-white px-4 py-2 rounded-lg font-bold hover:bg-yellow-500 transition-all" on:click={() => startEdit(format)}>Editar</button>
-								<button class="bg-red-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-red-600 transition-all" on:click={() => deleteFormat(format.id)}>Eliminar</button>
+								<button class="bg-pink-400 text-white px-4 py-2 rounded-lg font-bold hover:bg-pink-200 transition-all" on:click={() => startEdit(format)}>Editar</button>
+								<button class="bg-pink-500 text-white px-4 py-2 rounded-lg font-bold hover:bg-pink-600 transition-all" on:click={() => deleteFormat(format.id)}>Eliminar</button>
 							</div>
 						{/if}
 					</div>
