@@ -1,0 +1,89 @@
+services:
+  
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: laravel-app # change this
+    volumes:
+      - storage_data:/var/www/html/storage
+      - ./docker/php-production.ini:/usr/local/etc/php/conf.d/99-production.ini:ro
+    restart: unless-stopped
+    env_file:
+      - path: .env
+    depends_on:
+      mariadb:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+        - laravel-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      interval: 60s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+
+  reverb:
+      build:
+        context: .
+        dockerfile: Dockerfile
+      container_name: laravel-reverb
+      command: php artisan reverb:start --host=0.0.0.0 --port=8080
+      restart: unless-stopped
+      env_file:
+        - .env
+      depends_on:
+        redis:
+          condition: service_healthy
+      networks:
+        - laravel-network
+      ports:
+        - "8080:8080"
+
+  mariadb:
+    image: mariadb:11.4
+    container_name: laravel-mariadb
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    env_file:
+      - .env
+    environment:
+      MARIADB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MARIADB_DATABASE: ${DB_DATABASE}
+      MARIADB_USER: ${DB_USERNAME}
+      MARIADB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mariadb_data:/var/lib/mysql
+      - ./docker/db-optimization.cnf:/etc/mysql/conf.d/db-optimization.cnf:ro
+    networks:
+      - laravel-network
+
+  redis:
+      image: redis:7-alpine
+      container_name: laravel-redis # change this
+      restart: unless-stopped
+      command: redis-server
+      volumes:
+        - redis_data:/data
+      networks:
+        - laravel-network
+      healthcheck:
+        test: ["CMD", "redis-cli", "ping"]
+        interval: 30s
+        timeout: 3s
+        retries: 3
+        start_period: 10s
+      ports:
+      - "6379:6379"
+
+volumes:
+  storage_data:
+  mariadb_data:
+  redis_data:
+
+networks:
+  laravel-network:
+    driver: bridge

@@ -1,0 +1,47 @@
+import React, { useState } from 'react';
+import { SelectWithApiSearch } from '@/components/shared/select-with-api-search';
+
+export const ExampleUsage = () => {
+    const [selectedTeam, setSelectedTeam] = useState(null);
+    const [selectedUser, setSelectedUser] = useState(null);
+
+    return (
+        <div className="space-y-6 p-6">
+            <div>
+                <h3 className="text-lg font-semibold mb-4">Select a Team</h3>
+                <SelectWithApiSearch
+                    route={'/api/v1/teams'}
+                    placeholder="Select a team"
+                    label="Team"
+                    onChange={(team) => setSelectedTeam(team)}
+                    labelKey='name'
+                    valueKey='id'
+                    value={selectedTeam?.id}
+                />
+                {selectedTeam && (
+                    <p className="mt-2 text-sm text-muted-foreground">
+                        Selected: {selectedTeam.name} (ID: {selectedTeam.id})
+                    </p>
+                )}
+            </div>
+
+            <div>
+                <h3 className="text-lg font-semibold mb-4">Select a User</h3>
+                <SelectWithApiSearch
+                    route="/api/v1/users" // Example endpoint
+                    placeholder="Search users"
+                    label="User"
+                    onChange={(user) => setSelectedUser(user)}
+                    labelKey='name' // or 'email', depending on your API
+                    valueKey='id'
+                    value={selectedUser?.id}
+                />
+                {selectedUser && (
+                    <p className="mt-2 text-sm text-muted-foreground">
+                        Selected: {selectedUser.name} (ID: {selectedUser.id})
+                    </p>
+                )}
+            </div>
+        </div>
+    );
+};

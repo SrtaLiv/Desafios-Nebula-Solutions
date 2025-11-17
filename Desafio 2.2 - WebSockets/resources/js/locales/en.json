@@ -1,0 +1,30 @@
+{
+    "admin": {
+        "dashboard": "Dashboard",
+        "settings": "Settings",
+        "platform": "Platform"
+    },
+    "common": {
+        "hello_world": "Hello World"
+    },
+    "auth": {
+        "login": "Log In",
+        "logout": "Logout",
+        "register": "Register",
+        "login_title": "Log in to your account",
+        "login_description": "Enter your email and password below to log in",
+        "email_address": "Email Address",
+        "password": "Password",
+        "remember_me": "Remember Me",
+        "forgot_password": "Forgot password?",
+        "dont_have_account": "Don't have an account?",
+        "sign_up": "Sign up",
+        "register_title": "Create a new account",
+        "register_description": "Fill in the details below to create your account",
+        "name": "Name",
+        "confirm_password": "Confirm Password",
+        "create_account": "Create Account",
+        "already_have_account": "Already have an account?",
+        "login_with_google": "Log in with Google"
+    }
+}

@@ -1,0 +1,30 @@
+{
+    "admin": {
+        "dashboard": "Tablero",
+        "settings": "Configuraciones",
+        "platform": "Platforma"
+    },
+    "common": {
+        "hello_world": "Hola Mundo"
+    },
+    "auth": {
+        "login": "Iniciar sesión",
+        "logout": "Cerrar sesión",
+        "register": "Registrarse",
+        "login_title": "Inicia sesión en tu cuenta",
+        "login_description": "Ingresa tu correo electrónico y contraseña para iniciar sesión",
+        "email_address": "Correo electrónico",
+        "password": "Contraseña",
+        "remember_me": "Recuérdame",
+        "forgot_password": "¿Olvidaste tu contraseña?",
+        "dont_have_account": "¿No tienes una cuenta?",
+        "sign_up": "Regístrate",
+        "register_title": "Crea una nueva cuenta",
+        "register_description": "Completa los detalles a continuación para crear tu cuenta",
+        "name": "Nombre",
+        "confirm_password": "Confirmar contraseña",
+        "create_account": "Crear cuenta",
+        "already_have_account": "¿Ya tienes una cuenta?",
+        "login_with_google": "Iniciar sesión con Google"
+    }
+}
